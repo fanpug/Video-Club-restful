@@ -1,6 +1,6 @@
 const router = require("../routes");
 
-const express = requiere('express');
+const express = require('express');
 
 
 function list(req, res, next) {
