@@ -1,4 +1,4 @@
-const express = requiere('express');
+const express = require('express');
 
 function home(req, res, next) {
     res.render('index', { title: 'Express' });
