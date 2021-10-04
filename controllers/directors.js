@@ -10,7 +10,9 @@ function list(req, res, next) {
 
 function index(req, res, next){
     const id = req.params.id;
-    Director.findByPk(id).then(objects => res.json(objects));
+    Director.findByPk(id)
+        .then(objects => res.json(objects))
+        .catch(err => res.send(err));
 }
 
 function create(req, res, next){
@@ -26,19 +28,39 @@ function create(req, res, next){
         .then(obj => res.json(obj))
         .catch(err => res.send(err));
 
-    res.send("Crear un director nuevo");
 }
 
 function replace(req, res, next){
-    res.send(`Reemplazo el director con ID = ${req.params.id} por otro.`);
+    const id = req.params.id;
+    Director.findByPk(id)
+        .then(object => {
+            const name = req.body.name ? req.body.name : "";
+            const lastName = req.body.lastName ? req.body.lastName : "";
+
+            object.update({name:name, lastName:lastName})
+                .then(director => res.json(director));
+            })
+        .catch(err => res.send(err));
 }
 
 function edit(req, res, next){
-    res.send(`Reemplazo las propiedades del director con ID = ${req.params.id} por otras.`);
+    const id = req.params.id;
+    Director.findByPk(id)
+        .then(object => {
+            const name = req.body.name ? req.body.name : object.name;
+            const lastName = req.body.lastName ? req.body.lastName : object.lastName;
+
+            object.update({name:name, lastName:lastName})
+                .then(director => res.json(director));
+            })
+        .catch(err => res.send(err));
 }
 
 function destroy(req, res, next){
-    res.send(`Destrui un director con ID = ${req.params.id}.`);
+    const id = req.params.id;
+    Director.destroy({ where: {id:id} })
+        .then(objects => res.json(objects))
+        .catch(err => res.send(err));
 }
 
 
