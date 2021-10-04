@@ -1,5 +1,5 @@
 FROM node 
-MAINTAINER Humberto Navarro
+LABEL author = "Humberto Navarro"
 WORKDIR /app
 COPY . .
 RUN npm install
