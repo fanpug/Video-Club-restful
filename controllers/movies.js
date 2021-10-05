@@ -1,11 +1,11 @@
 const router = require("../routes");
-const { Movie } = require('../db');
+const { Movie, Actor } = require('../db');
 const express = require('express');
 
 
 function list(req, res, next) {
     res.send('Lista de peliculas del sistema');
-    Movie.findAll({include:['genres']})
+    Movie.findAll({include:['genres', 'directors', 'actors']})
         .then(objects => res.json(objects))
         .catch(err => res.send(err));
 }
@@ -15,6 +15,19 @@ function index(req, res, next){
     Movie.findByPk(id)
         .then(objects => res.json(objects))
         .catch(err => res.send(err));
+}
+
+function addActor(req, res, next){
+    const idMovie = req.body.idMovie;
+    const idActor = req.body.idActor;
+
+    Movie.findByPk(id)
+        .then((movie) => {
+            Actor.findByPk(idActor).then((actor) => {
+                movie.addActor(actor);
+                res.json(movie);
+            });
+        });
 }
 
 function create(req, res, next){
@@ -35,29 +48,11 @@ function create(req, res, next){
 }
 
 function replace(req, res, next){
-    const id = req.params.id;
-    Director.findByPk(id)
-        .then(object => {
-            const name = req.body.name ? req.body.name : "";
-            const lastName = req.body.lastName ? req.body.lastName : "";
-
-            object.update({name:name, lastName:lastName})
-                .then(director => res.json(director));
-            })
-        .catch(err => res.send(err));
+    
 }
 
 function edit(req, res, next){
-    const id = req.params.id;
-    Movie.findByPk(id)
-        .then(object => {
-            const name = req.body.name ? req.body.name : object.name;
-            const lastName = req.body.lastName ? req.body.lastName : object.lastName;
-
-            object.update({name:name, lastName:lastName})
-                .then(director => res.json(director));
-            })
-        .catch(err => res.send(err));
+    
 }
 
 function destroy(req, res, next){
@@ -69,5 +64,5 @@ function destroy(req, res, next){
 
 
 module.exports = {
-    list, index, create, replace, edit, destroy
+    list, index, create, replace, edit, destroy, addActor
 }
