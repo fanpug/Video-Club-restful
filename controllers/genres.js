@@ -1,32 +1,32 @@
 const router = require("../routes");
-const { Director } = require('../db');
+const { Genre } = require('../db');
 const express = require('express');
 
 
 function list(req, res, next) {
-    res.send('Lista de directores del sistema');
-    Director.findAll({include: ['movies']})
+    res.send('Lista de generos del sistema');
+    Genre.findAll({include:['movies']})
         .then(objects => res.json(objects))
         .catch(err => res.send(err));
 }
 
 function index(req, res, next){
     const id = req.params.id;
-    Director.findByPk(id)
+    Genre.findByPk(id)
         .then(objects => res.json(objects))
         .catch(err => res.send(err));
 }
 
 function create(req, res, next){
-    const name = req.body.name;
-    const lastName = req.body.lastName;
+    const description = req.body.description;
+    const status = req.body.status;
 
-    let director = new Object({
-        name:name,
-        lastName:lastName
+    let genre = new Object({
+        description:description,
+        status:status
     });
 
-    Director.create(director)
+    Genre.create(genre)
         .then(obj => res.json(obj))
         .catch(err => res.send(err));
 
