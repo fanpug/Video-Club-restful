@@ -58,6 +58,16 @@ Movie.belongsToMany(Movie, {
 });
 
 
+//Una reservacion puede tener un miembro
+Booking.belongsTo(Member, {foreignKey: 'memberId'});
+
+//Una reservacion puede tener una copia
+Booking.belongsTo(Copy, {foreignKey: 'copyId'});
+
+//Una copia tiene una pelicula
+Copy.belongsTo(Movie, {foreignKey: 'movieId'})
+
+
 sequelize.sync({
     force: true
 }).then(()=>{

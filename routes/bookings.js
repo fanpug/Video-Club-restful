@@ -15,6 +15,5 @@ router.patch('/', controller.edit);
 
 router.delete('/:id', controller.destroy);
 
-router.post('/add/actor', controller.create);
 
 module.exports = router;
