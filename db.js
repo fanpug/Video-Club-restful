@@ -8,7 +8,7 @@ const movieActorModel = require('./models/movieactor');
 
 //La clase de Sequelize recibe: 1)dbname 2)user 3)password 4)obj conf
 
-const sequelize = new Sequelize('video-club', 'root', 'secret', {
+const sequelize = new Sequelize('video_club', 'root', '1234', {
     host: 'localhost',  //direccion de nuestro rdbms
     dialect: 'mysql'
 });
