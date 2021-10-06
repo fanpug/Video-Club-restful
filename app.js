@@ -10,6 +10,7 @@ const directorsRouter = require('./routes/directors');
 const genresRouter = require('./routes/genres');
 const moviesRouter = require('./routes/movies');
 const actorsRouter = require('./routes/actors');
+const membersRouter = require('./routes/members');
 const app = express();
 
 // view engine setup
@@ -28,6 +29,7 @@ app.use('/directors', directorsRouter);
 app.use('/genres', genresRouter);
 app.use('/movies', moviesRouter);
 app.use('/actors', actorsRouter);
+app.use('/members', membersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
