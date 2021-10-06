@@ -6,6 +6,8 @@ const movieModel = require('./models/movie');
 const actorModel = require('./models/actor');
 const movieActorModel = require('./models/movieactor');
 const memberModel = require('./models/member');
+const bookingModel = require('./models/booking');
+
 
 //La clase de Sequelize recibe: 1)dbname 2)user 3)password 4)obj conf
 
@@ -20,6 +22,7 @@ const Movie = movieModel(sequelize, Sequelize);
 const Actor = actorModel(sequelize, Sequelize);
 const MovieActor = movieActorModel(sequelize, Sequelize);
 const Member = memberModel(sequelize, Sequelize);
+const Booking = bookingModel(sequelize, Sequelize);
 
 
 //Un genero puede tener muchas peliculas
@@ -59,5 +62,5 @@ sequelize.sync({
     console.log("Base de datos actualizada correctamente!!");
 });
 
-module.exports = {Director, Genre, Movie, Actor, MovieActor, Member};
+module.exports = {Director, Genre, Movie, Actor, MovieActor, Member, Booking};
 
