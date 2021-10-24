@@ -7,11 +7,12 @@ const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const actorsRouter = require('./routes/actors');
 
 
 
 // "mongodb://<dbUser>?:<dbPassword>?@<direction>:<port>/<dbName>"
-const uri = "mongodb://localhost:27017";
+const uri = "mongodb://localhost:27017/videoClub";
 mongoose.connect(uri);
 
 const db = mongoose.connection;
@@ -36,8 +37,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/actors', actorsRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

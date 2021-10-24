@@ -1,10 +1,10 @@
-const router = require("../routes");
-
 const express = require('express');
 
 
 function list(req, res, next) {
+    //email, name, lastName, password
     res.send('Lista de usuarios del sistema');
+
 }
 
 function index(req, res, next){
