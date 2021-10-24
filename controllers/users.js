@@ -1,14 +1,33 @@
 const express = require('express');
+const User = require("../models/user");
 
 
 function list(req, res, next) {
     //email, name, lastName, password
-    res.send('Lista de usuarios del sistema');
+    User.find()
+    .then(objs => res.status(200).json({
+        message: 'Lista de usuarios del sistema',
+        obj: objs
+    }))
+    .catch(ex => res.status(500).json({
+        message: "No se pudo consultar la informacion de los usuarios",
+        obj: ex
+    }));
 
 }
 
 function index(req, res, next){
-    res.send(`Usuario del sistema con un ID = ${req.params.id}`);
+    const id = req.params.id;
+
+    User.findOne({"_id":id})
+    .then(obj => res.status(200).json({
+        message: `Se retorna el usuario con ID ${id}`,
+        obj: obj
+    }))
+    .catch(ex => res.status(500).json({
+        message: `No se pudo consultar la informacion del usuario con ID ${id}`,
+        obj: ex
+    }));
 
 }
 
