@@ -4,12 +4,14 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const expressJwt = require('express-jwt');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const actorsRouter = require('./routes/actors');
 
 
+const jwtKey = "8adadb33444c21fa4a6b346f86d6dbd4";
 
 // "mongodb://<dbUser>?:<dbPassword>?@<direction>:<port>/<dbName>"
 const uri = "mongodb://localhost:27017/videoClub";
@@ -38,6 +40,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+app.use(expressJwt({
+  secret:jwtKey,
+  algorithms:['HS256']
+})
+.unless({ path:["/login"] }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
