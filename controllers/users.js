@@ -1,4 +1,7 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
+const async = require('async');
+
 const User = require("../models/user");
 
 
