@@ -7,7 +7,7 @@ const schema = mongoose.Schema({
     _password:{type: String, select: false}
 });
 
-class Actor {
+class User {
     constructor(name, lastName, email, password){
         this._name = name;
         this._lastName = lastName;
