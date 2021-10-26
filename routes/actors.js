@@ -11,7 +11,7 @@ router.post('/', controller.create);
 
 router.put('/:id', controller.replace);
 
-router.patch('/', controller.edit);
+router.patch('/:id', controller.edit);
 
 router.delete('/:id', controller.destroy);
 
