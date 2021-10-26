@@ -40,22 +40,33 @@ function create(req, res, next){
     const email = req.body.email;
     const password = req.body.password;
 
-    let user = new User({
-        name:name,
-        lastName:lastName,
-        email:email,
-        password:password
+    async.parallel({
+        salt:(callback)=>{
+            bcrypt.genSalt(10, callback);
+        }
+    }, (err, result)=>{
+        bcrypt.hash(password, result.salt, (error, hash)=>{
+            let user = new User({
+                name:name,
+                lastName:lastName,
+                email:email,
+                password:hash,
+                salt:result.salt
+            });
+        
+            user.save()
+            .then(obj => res.status(200).json({
+                message: 'Usuario creado correctamente',
+                obj: obj
+            }))
+            .catch(ex => res.status(500).json({
+                message: 'No se pudo crear el usuario.',
+                obj: ex
+            }));
+        });
     });
 
-    user.save()
-    .then(obj => res.status(200).json({
-        message: 'Usuario creado correctamente',
-        obj: obj
-    }))
-    .catch(ex => res.status(500).json({
-        message: 'No se pudo crear el usuario.',
-        obj: ex
-    }));
+    
 }
 
 function replace(req, res, next){
