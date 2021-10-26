@@ -7,7 +7,9 @@ const User = require("../models/user");
 
 function list(req, res, next) {
     //email, name, lastName, password
-    User.find()
+    let page = req.params.page ? req.params.page : 1;
+
+    User.paginate({}, {page:page, limit:3})
     .then(objs => res.status(200).json({
         message: 'Lista de usuarios del sistema',
         obj: objs

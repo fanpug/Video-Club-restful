@@ -4,7 +4,9 @@ const Actor = require("../models/actor");
 
 
 function list(req, res, next) {
-    Actor.find()
+    let page = req.params.page ? req.params.page : 1;
+
+    Actor.paginate({}, {page:page, limit:3})
     .then(objs => res.status(200).json({
         message: 'Lista de actores del sistema',
         obj: objs
