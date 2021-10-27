@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/actors');
+const controller = require('../controllers/bookings');
 
 /* GET users listing. */
 router.get('/:page?', controller.list);
