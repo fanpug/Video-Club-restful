@@ -55,6 +55,7 @@ function create(req, res, next){
 }
 
 function replace(req, res, next){
+    const id = req.params.id;
     const copy = req.body.copy ? req.body.copy : "";
     const member = req.body.member ? req.body.member : "";
     const date = req.body.date ? req.body.date : "";
