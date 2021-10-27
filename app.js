@@ -9,6 +9,10 @@ const expressJwt = require('express-jwt');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const actorsRouter = require('./routes/actors');
+const membersRouter = require('./routes/members');
+const moviesRouter = require('./routes/movies');
+const copiesRouter = require('./routes/copies');
+const bookingsRouter = require('./routes/bookings');
 
 
 const jwtKey = "8adadb33444c21fa4a6b346f86d6dbd4";
@@ -49,6 +53,10 @@ app.use(expressJwt({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/actors', actorsRouter);
+app.use('/members', membersRouter);
+app.use('/movies', moviesRouter);
+app.use('/copies', copiesRouter);
+app.use('/bookings', bookingsRouter);
 
 
 
