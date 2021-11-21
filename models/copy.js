@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
     _format:String,
-    _movie:[{ type: Schema.ObjectId, ref: 'Movie' }],
+    _movie:[{ type: mongoose.Schema.ObjectId, ref: 'Movie' }],
     _number:Number,
     _status:String
 });

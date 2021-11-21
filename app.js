@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const expressJwt = require('express-jwt');
+const config = require('config');
+const i18n = require('i18n');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -15,10 +17,10 @@ const copiesRouter = require('./routes/copies');
 const bookingsRouter = require('./routes/bookings');
 
 
-const jwtKey = "8adadb33444c21fa4a6b346f86d6dbd4";
+const jwtKey = config.get("secret.key");
 
 // "mongodb://<dbUser>?:<dbPassword>?@<direction>:<port>/<dbName>"
-const uri = "mongodb://localhost:27017/videoClub";
+const uri = config.get("dbChain");
 mongoose.connect(uri);
 
 const db = mongoose.connection;
@@ -32,6 +34,12 @@ db.on('open', ()=>{
   console.log("Todo chido");
 });
 
+i18n.configure({
+  locales: ['es', 'en'],
+  cookie: 'language',
+  directory: `${__dirname}/locales`
+});
+
 
 // view engine setup => PUG
 app.set('views', path.join(__dirname, 'views'));
@@ -41,7 +49,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(i18n.init);
 
 
 app.use(expressJwt({
@@ -49,6 +59,7 @@ app.use(expressJwt({
   algorithms:['HS256']
 })
 .unless({ path:["/login"] }));
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

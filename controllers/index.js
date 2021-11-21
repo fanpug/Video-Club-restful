@@ -24,19 +24,19 @@ function login(req, res, next) {
             bcrypt.hash(password, result.user.salt, (err, hash)=>{
                 if(hash === result.user.password){
                     res.status(200).json({
-                        message:"Inicio de sesion exitoso!",
+                        message:res.__('ok.login'),
                         obj:jwt.sign(result.user.id, jwtKey)
                     });
                 }else{
                     res.status(403).json({
-                        message:"Usuario y/o contrasenia incorrectos",
+                        message:res.__('bad.login'),
                         obj:null
                     });
                 }
             });
         }else{
             res.status(403).json({
-                message:"Usuario y/o contrasenia incorrectos",
+                message:res.__('bad.login'),
                 obj:null
             });
         }
