@@ -35,7 +35,7 @@ db.on('open', ()=>{
 });
 
 i18n.configure({
-  locales: ['es', 'en'],
+  locales: ['en', 'es'],
   cookie: 'language',
   directory: `${__dirname}/locales`
 });
