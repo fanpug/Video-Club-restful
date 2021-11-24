@@ -8,11 +8,11 @@ function list(req, res, next) {
 
     Movie.paginate({}, {page:page, limit:3})
     .then(objs => res.status(200).json({
-        message: 'Lista de peliculas del sistema',
+        message: res.__('ok.find'),
         obj: objs
     }))
     .catch(ex => res.status(500).json({
-        message: "No se pudo consultar la informacion de las peliculas",
+        message: res.__('bad.find'),
         obj: ex
     }));
 }
@@ -22,11 +22,11 @@ function index(req, res, next){
 
     Movie.findOne({"_id":id})
     .then(obj => res.status(200).json({
-        message: `Se retorna la pelicula con ID ${id}`,
+        message: ('ok.find'),
         obj: obj
     }))
     .catch(ex => res.status(500).json({
-        message: `No se pudo consultar la informacion de la pelicula con ID ${id}`,
+        message: res.__('bad.find'),
         obj: ex
     }));
 
@@ -54,11 +54,11 @@ function create(req, res, next){
 
     movie.save()
     .then(obj => res.status(200).json({
-        message: 'Movie creada correctamente',
+        message: res.__('ok.create'),
         obj: obj
     }))
     .catch(ex => res.status(500).json({
-        message: 'No se pudo crear la movie.',
+        message: res.__('bad.create'),
         obj: ex
     }));
 }
@@ -86,11 +86,11 @@ function replace(req, res, next){
 
     Movie.findOneAndUpdate({"_id":id}, movie)
     .then(obj => res.status(200).json({
-        message: `Se reemplaza la pelicula con ID ${id}`,
+        message: res.__('ok.replace'),
         obj: obj
     }))
     .catch(ex => res.status(500).json({
-        message: `No se pudo reemplazar la pelicula con ID ${id}`,
+        message: res.__('bad.replace'),
         obj: ex
     }));
 }
@@ -127,11 +127,11 @@ function edit(req, res, next){
 
     Movie.findOneAndUpdate({"_id":id}, movie)
     .then(obj => res.status(200).json({
-        message: `Se actualiza la pelicula con ID ${id}`,
+        message: res.__('ok.edit'),
         obj: obj
     }))
     .catch(ex => res.status(500).json({
-        message: `No se pudo actualizar la pelicula con ID ${id}`,
+        message: res.__('bad.edit'),
         obj: ex
     }));
 }
@@ -141,11 +141,11 @@ function destroy(req, res, next){
 
     Movie.remove({"_id":id})
     .then(obj => res.status(200).json({
-        message: `Se elimino la pelicula con ID ${id}`,
+        message: res.__('ok.destroy'),
         obj: obj
     }))
     .catch(ex => res.status(500).json({
-        message: `No se pudo eliminar la pelicula con ID ${id}`,
+        message: res.__('bad.destroy'),
         obj: ex
     }));
 }

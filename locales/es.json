@@ -1,4 +1,15 @@
 {
     "ok.login": "Sesion iniciada correctamente",
-    "bad.login": "Usuario y/o contrasenia incorrectos"
+    "bad.login": "Usuario y/o contrasenia incorrectos",
+
+    "ok.find": "Mostrando informacion",
+    "bad.find": "Hubo un error al tratar de obtener la informacion",
+    "ok.create": "Creado correctamente",
+    "bad.create": "Ocurrió un error en la creación",
+    "ok.replace": "Reemplazado correctamente",
+    "bad.replace": "Ocurrió un error en el reemplazo",
+    "ok.edit": "Actualizado correctamente",
+    "bad.edit": "Ocurrió un error al actualizarse",
+    "ok.destroy": "Destruido correctamente",
+    "bad.destroy": "Ocurrió un error al destruirse"
 }

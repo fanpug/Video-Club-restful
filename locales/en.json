@@ -1,4 +1,15 @@
 {
     "ok.login": "Login Succes.",
-    "bad.login": "User or password is incorrect"
+    "bad.login": "User or password is incorrect",
+
+    "ok.find": "Displaying info",
+    "bad.find": "An error has ocurred trying to obtain the information",
+    "ok.create": "Created successfully",
+    "bad.create": "An error has ocurred in the creation",
+    "ok.replace": "Replaced successfully",
+    "bad.replace": "An error has ocurred trying to replace the information",
+    "ok.edit": "Updated succesfully",
+    "bad.edit": "An error has ocurred trying to update the information",
+    "ok.destroy": "Destroyed successfully",
+    "bad.destroy": "An error has ocurred trying to destroy the information"
 }

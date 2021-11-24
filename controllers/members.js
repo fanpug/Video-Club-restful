@@ -8,11 +8,11 @@ function list(req, res, next) {
 
     Member.paginate({}, {page:page, limit:3})
     .then(objs => res.status(200).json({
-        message: 'Lista de miembros del sistema',
+        message: res.__('ok.find'),
         obj: objs
     }))
     .catch(ex => res.status(500).json({
-        message: "No se pudo consultar la informacion de los miembros",
+        message: res.__('bad.find'),
         obj: ex
     }));
 }
@@ -22,11 +22,11 @@ function index(req, res, next){
 
     Member.findOne({"_id":id})
     .then(obj => res.status(200).json({
-        message: `Se retorna el miembro con ID ${id}`,
+        message: ('ok.find'),
         obj: obj
     }))
     .catch(ex => res.status(500).json({
-        message: `No se pudo consultar la informacion del miembro con ID ${id}`,
+        message: res.__('bad.find'),
         obj: ex
     }));
 
@@ -62,11 +62,11 @@ function create(req, res, next){
 
     member.save()
     .then(obj => res.status(200).json({
-        message: 'Miembro creado correctamente',
+        message: res.__('ok.create'),
         obj: obj
     }))
     .catch(ex => res.status(500).json({
-        message: 'No se pudo crear el miembro.',
+        message: res.__('bad.create'),
         obj: ex
     }));
 }
@@ -103,11 +103,11 @@ function replace(req, res, next){
 
     Member.findOneAndUpdate({"_id":id}, member)
     .then(obj => res.status(200).json({
-        message: `Se reemplaza el miembro con ID ${id}`,
+        message: res.__('ok.replace'),
         obj: obj
     }))
     .catch(ex => res.status(500).json({
-        message: `No se pudo reemplazar el miembro con ID ${id}`,
+        message: res.__('bad.replace'),
         obj: ex
     }));
 }
@@ -166,11 +166,11 @@ function edit(req, res, next){
 
     Member.findOneAndUpdate({"_id":id}, member)
     .then(obj => res.status(200).json({
-        message: `Se actualiza el miembro con ID ${id}`,
+        message: res.__('ok.edit'),
         obj: obj
     }))
     .catch(ex => res.status(500).json({
-        message: `No se pudo actualizar el miembro con ID ${id}`,
+        message: res.__('bad.edit'),
         obj: ex
     }));
 }
@@ -180,11 +180,11 @@ function destroy(req, res, next){
 
     Member.remove({"_id":id})
     .then(obj => res.status(200).json({
-        message: `Se elimino el miembro con ID ${id}`,
+        message: res.__('ok.destroy'),
         obj: obj
     }))
     .catch(ex => res.status(500).json({
-        message: `No se pudo eliminar el miembro con ID ${id}`,
+        message: res.__('bad.destroy'),
         obj: ex
     }));
 }
