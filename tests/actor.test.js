@@ -16,3 +16,19 @@ describe('Probar el sistema de autenticacion', () => {
 
     });
 });
+
+describe('Probar las rutas de los actores',()=>{
+    it('Deberia de obtener la lista de actores', (done)=>{
+        supertest(app).get('/actors/')
+        .set('Authorization', `Bearer ${key}`)
+        .end(function(err, res){
+            if(err){
+                done(err);
+            }else{
+                expect(res.statusCode).toEqual(200);
+                done();
+            }
+        });
+    });
+    
+});

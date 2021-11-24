@@ -16,3 +16,19 @@ describe('Probar el sistema de autenticacion', () => {
 
     });
 });
+
+describe('Probar las rutas de los miembros',()=>{
+    it('Deberia de obtener la lista de miembros', (done)=>{
+        supertest(app).get('/members/')
+        .set('Authorization', `Bearer ${key}`)
+        .end(function(err, res){
+            if(err){
+                done(err);
+            }else{
+                expect(res.statusCode).toEqual(200);
+                done();
+            }
+        });
+    });
+    
+});
